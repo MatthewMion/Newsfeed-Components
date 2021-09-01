@@ -19,7 +19,48 @@ let menuItems = [
   </div>
 
   The 'menuMaker' takes an array of menu items as its only argument.
+*/
 
+function menuMaker(menuItems){
+  const menuDiv = document.createElement('div')
+  const menuUl = document.createElement('ul')
+  const students = document.createElement('li')
+  const faculty = document.createElement('li')
+  const whatsNew = document.createElement('li')
+  const techTrends = document.createElement('li')
+  const music = document.createElement('li')
+  const logOut = document.createElement('li')
+
+  menuUl.appendChild(students);
+  menuUl.appendChild(faculty);
+  menuUl.appendChild(whatsNew);
+  menuUl.appendChild(techTrends);
+  menuUl.appendChild(music);
+  menuUl.appendChild(logOut);
+
+  const menuListItems = menuItems.map(menuItem => {
+   const listItem = document.createElement('li')
+   listItem.textContent = menuItem
+   return listItem
+  })
+
+  menuListItems.forEach(listItem =>{
+    menuUl.appendChild(listItem)
+  })
+  const menuButton = document.querySelector('.menu-button')
+  menuButton.addEventListener('click', () => {
+    menuDiv.classList.toggle('menu--open')
+  })
+  return menuDiv
+}
+ 
+
+const newMenu = menuMaker(menuItems)
+const header = document.querySelector('.header')
+header.appendChild(newMenu)
+console.log(newMenu)
+
+/*
   Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array.
   Add those items to the <ul>
 
