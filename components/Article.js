@@ -114,20 +114,55 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
-function articleMaker({object}){
-  const articleDiv = document.createElement('div').classList.add('article')
-  const articleH2 = document.createElement('h2').textContent(object[title])
-  const articleDate = document.createElement('p').classList.add('date')
-  const firstP = document.createElement('p').textContent(object[firstParagraph])
-  const secondP = document.createElement('p').textContent(object[secondParagraph])
-  const thirdP = document.createElement('p').textContent(object[thirdParagraph])
-  const articleSpan = document.createElement('span').classList.add('expandButtom').textContent('+')
+const articleBody = document.querySelector('body')
+//step 1
+function articleMaker(object){
 
+  //create elements
+  const articleDiv = document.createElement('div')
+  const articleH2 = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const articleSpan = document.createElement('span')
+  
+  //append
+  articleDiv.appendChild(articleH2);
+  articleDiv.appendChild(articleDate);
+  articleDiv.appendChild(firstP);
+  articleDiv.appendChild(secondP);
+  articleDiv.appendChild(thirdP);
+  articleDiv.appendChild(articleSpan);
 
+  //add classes
+  articleDiv.classList.add('article');
+  articleDate.classList.add('date');
+  articleSpan.classList.add('expandButton')
+
+  //add text
+  articleH2.textContent = object.title;
+  articleDate.textContent = object.date;
+  firstP.textContent = object.firstParagraph;
+  secondP.textContent = object.secondParagraph;
+  thirdP.textContent = object.thirdParagraph;
+  articleSpan.textContent = '+'
+
+  //step 2 event listener
+  articleSpan.addEventListener('click', event =>{
+    articleDiv.classList.toggle('article-open')
+  })
+
+return articleDiv;
 }
 
-articleDiv.appendChild(articleH2);
-articleDiv.appendChild(articleDate);
-articleDiv.appendChild(firstP);
-articleDiv.appendChild(secondP);
-articleDiv.appendChild(thirdP);
+const articleDivs =  data.map(article => {
+  return articleMaker(article)
+})
+
+articleDivs.forEach(articleDiv =>{
+  articleBody.appendChild(articleDiv)
+} )
+
+
+articleMaker(data)
