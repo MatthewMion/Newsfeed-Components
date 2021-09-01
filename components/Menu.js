@@ -31,12 +31,8 @@ function menuMaker(menuItems){
   const music = document.createElement('li')
   const logOut = document.createElement('li')
 
-  menuUl.appendChild(students);
-  menuUl.appendChild(faculty);
-  menuUl.appendChild(whatsNew);
-  menuUl.appendChild(techTrends);
-  menuUl.appendChild(music);
-  menuUl.appendChild(logOut);
+  menuDiv.classList.add('menu')
+  menuDiv.appendChild(menuUl)
 
   const menuListItems = menuItems.map(menuItem => {
    const listItem = document.createElement('li')
@@ -58,7 +54,6 @@ function menuMaker(menuItems){
 const newMenu = menuMaker(menuItems)
 const header = document.querySelector('.header')
 header.appendChild(newMenu)
-console.log(newMenu)
 
 /*
   Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array.
